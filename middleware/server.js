@@ -13,9 +13,13 @@ app.use(express.json());
 app.use(abcRoutes);
 
 
-app.get('/a', middleware.requestTime, middleware.handleAll);
+app.get('/a', middleware.requestTime, (req,res) => {
+    res.status(200).send('Route A');
+  });
 
-app.get('/b',  middleware.squaredNumber(4), middleware.requestTime, middleware.handleAll);
+app.get('/b',  middleware.squaredNumber(4), middleware.requestTime,(req,res) => {
+    res.status(200).send('Route B');
+  });
 
 /**
  * error handler
